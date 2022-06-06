@@ -31,6 +31,7 @@ const SurveyProvider = (props) => {
     const [surveyRender, setSurveyRender] = useState(false);
     const [tutorialRender, setTutorialRender] = useState(false);
     const [checkRender, setCheckRender] = useState(false);
+    const [checkFinish, setFinishRender] = useState(false);
 
     //tempExp
     const [tempBreak, setTempBreak] = useState({[tutorialIndex]:[]});
@@ -65,7 +66,6 @@ const SurveyProvider = (props) => {
         setUserData(userdata => ({...userdata, startTime : new Date()}))
         setBreakData(breakData => ({...breakData, trial_id : tutorialdata[tutorialIndex]}))
         setBreakData(breakData => ({...breakData, annotation : "-1"}))
-        setBreakData(breakData => ({...breakData, fairpriv : "-1"}))
         setTutorialRender(true)
         setSurveyRender(true)
         setInput(0)
@@ -75,6 +75,7 @@ const SurveyProvider = (props) => {
     function checkSubmit(e){
         setUserData(userdata => ({...userdata, breakSurvey : tempBreak}));
         setCheckRender(false);
+        setFinishRender(true);
     }
 
     function BreakSubmit(e){
@@ -145,9 +146,6 @@ const SurveyProvider = (props) => {
         }else if(e.target.name === 'annotation'){
             const temp = e.target.value
             setBreakData(breakData => ({...breakData, annotation : temp}))
-        }else if(e.target.name === 'fairness'){
-            const temp = e.target.value
-            setBreakData(breakData => ({...breakData, fairpriv : temp}))
         }
     }
 
@@ -174,9 +172,11 @@ const SurveyProvider = (props) => {
             tutorialIndex,
             surveyRender,
             checkRender,
+            checkFinish,
             tempBreak,
             input,
             breakData,
+            postId,
             BreakSubmit,
             onInput,
             setInput,

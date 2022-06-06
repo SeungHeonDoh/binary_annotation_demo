@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
+import {Link} from 'react-router-dom';
+
 import { SurveyContext } from '../../../hook/useSurveyData';
 import { Middleinput, SurveyConatiner, SurveyContents, TextContainer,Middlebutton, H4label} from '../../../styles';
 
-export default function Intro() {
+export default function Front() {
     const Context = useContext(SurveyContext)
     const {getSubmit, startSubmit} = Context
+    
     return (
         <>
         <TextContainer>
@@ -115,7 +118,9 @@ export default function Intro() {
             
             <form onSubmit={(e) => {startSubmit(e); e.preventDefault();}}>
                 <SurveyConatiner>
-                    <Middlebutton type="submit">Start Survey</Middlebutton>
+                    <Link to = {`${ process.env.PUBLIC_URL + "/Survey" }`}>
+                        <Middlebutton type="submit">Start Survey</Middlebutton>
+                    </Link>
                 </SurveyConatiner>
             </form>
         </TextContainer>
