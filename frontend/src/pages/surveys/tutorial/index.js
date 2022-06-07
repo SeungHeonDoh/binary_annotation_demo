@@ -26,10 +26,9 @@ export default function Tutorial({TutorialIndex}) {
     return (
         <>
         <InfoContainer>
-            <h1> Question: {query}</h1> 
-
             <form onSubmit={(e) => {BreakSubmit(e); e.preventDefault();}}>               
                 <img src={url_of_image} alt="alternatetext" width="300" height="300"/>
+                <h1> Question: {query}</h1> 
                 <p>
                     Do you want to use the image below  <br/>
                     as an <b>thumbnail image</b> for the <b>{query} music playlist</b>?
